@@ -652,6 +652,11 @@
     if (emailInput && passInput && form) {
       emailInput.value = user.email;
       passInput.value = user.password || "admin123";
+      const submitBtn = document.getElementById("login-submit");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "<span>⏳ جاري الدخول كـ " + user.name + "...</span>";
+      }
       form.dispatchEvent(new Event("submit", { cancelable: true }));
     }
   };

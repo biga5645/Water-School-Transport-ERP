@@ -17,51 +17,182 @@
   </head>
   <body>
 
-    <!-- ===== شاشة الدخول ===== -->
+    <!-- ===== شاشة الدخول العصرية ===== -->
     <div id="login-screen" class="login-screen">
-      <div class="login-card">
-        <div class="login-logo">💧</div>
-        <h1 class="login-title">جمعية الماء والنقل المدرسي</h1>
-        <p class="login-sub">Association ERP — تسجيل الدخول</p>
-
-        <!-- Quick 1-Click Demo Showcase -->
-        <div class="demo-quick-bar">
-          <div class="demo-quick-title">⚡ تجربة حية بنقرة واحدة (1-Click Demo Showcase):</div>
-          <div class="demo-chips">
-            <button type="button" class="demo-chip" onclick="quickDemoLogin('Super Admin')">👑 مدير عام (Admin)</button>
-            <button type="button" class="demo-chip" onclick="quickDemoLogin('Treasurer')">💰 أمين المال (Treasurer)</button>
-            <button type="button" class="demo-chip" onclick="quickDemoLogin('Transport Manager')">🚌 مسؤول النقل (Transport)</button>
-            <button type="button" class="demo-chip" onclick="quickDemoLogin('Meter Reader')">📊 قارئ العدادات (Reader)</button>
-            <button type="button" class="demo-chip" onclick="quickDemoLogin('Accountant')">💼 المحاسب (Accountant)</button>
+      <div class="login-container">
+        
+        <!-- Header -->
+        <header class="login-header">
+          <div class="login-brand">
+            <span class="login-brand-icon">💧</span>
+            <div>
+              <h1 class="login-brand-title">جمعية الماء الصالح للشرب والنقل المدرسي</h1>
+              <p class="login-brand-sub">Association ERP — بوابة التدبير المندمج وتسيير الخدمات العامة</p>
+            </div>
           </div>
-        </div>
-
-        <div id="login-error" class="login-error" style="display:none"></div>
-        <form id="login-form" class="login-form" autocomplete="off">
-          <div class="login-field">
-            <label>البريد الإلكتروني</label>
-            <input id="li-email" type="email" name="email" required placeholder="admin@example.com" />
+          <div class="login-system-tag">
+            <span class="live-dot"></span>
+            <span>بوابة المعاينة التفاعلية الحية</span>
           </div>
-          <div class="login-field">
-            <label>كلمة المرور</label>
-            <input id="li-pass" type="password" name="password" required placeholder="••••••••" />
-          </div>
-          <button type="submit" class="login-btn" id="login-submit">🔐 دخول</button>
-        </form>
+        </header>
 
-        <div class="login-hints">
-          <p>حسابات التجربة (انقر على أي سطر للتسجيل الفوري):</p>
-          <table class="hints-table" id="hints-table">
-            <tr data-email="admin@example.com" data-pass="admin123"><td>Super Admin</td><td>admin@example.com</td><td>admin123</td></tr>
-            <tr data-email="reader@example.com" data-pass="reader123"><td>قارئ العدادات</td><td>reader@example.com</td><td>reader123</td></tr>
-            <tr data-email="treasurer@example.com" data-pass="treas123"><td>أمين المال</td><td>treasurer@example.com</td><td>treas123</td></tr>
-            <tr data-email="transport@example.com" data-pass="trans123"><td>مسؤول النقل</td><td>transport@example.com</td><td>trans123</td></tr>
-            <tr data-email="accountant@example.com" data-pass="accnt123"><td>المحاسب</td><td>accountant@example.com</td><td>accnt123</td></tr>
-            <tr data-email="president@example.com" data-pass="pres123"><td>الرئيس</td><td>president@example.com</td><td>pres123</td></tr>
-            <tr data-email="secretary@example.com" data-pass="secr123"><td>أمين السر</td><td>secretary@example.com</td><td>secr123</td></tr>
-            <tr data-email="billing@example.com" data-pass="bill123"><td>وكيل الفوترة</td><td>billing@example.com</td><td>bill123</td></tr>
-            <tr data-email="maintenance@example.com" data-pass="maint123"><td>عون الصيانة</td><td>maintenance@example.com</td><td>maint123</td></tr>
-          </table>
+        <!-- Two Column Main Layout -->
+        <div class="login-grid">
+          
+          <!-- Column 1: Quick Role Selection Cards (اليمين في RTL) -->
+          <div class="login-roles-pane">
+            <div class="pane-headline">
+              <div class="pane-title-group">
+                <span class="pane-badge-icon">⚡</span>
+                <div>
+                  <h2 class="pane-title">الدخول السريع بالحسابات التجريبية</h2>
+                  <p class="pane-subtitle">انقر على أي حساب لتسجيل الدخول فوراً واستكشاف الصلاحيات والمهام:</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="roles-selection-grid">
+              <!-- بطاقة 1: المدير العام -->
+              <div class="role-select-card card-admin" onclick="quickDemoLogin('Super Admin')">
+                <div class="rsc-top">
+                  <div class="rsc-icon">👑</div>
+                  <div class="rsc-info">
+                    <strong class="rsc-name">المدير العام (Super Admin)</strong>
+                    <span class="rsc-tag tag-admin">صلاحيات كاملة 100%</span>
+                  </div>
+                </div>
+                <p class="rsc-desc">إشراف شامل على الجمعية، إعدادات النظام، والتقارير المالية والتشغيلية.</p>
+                <div class="rsc-action">
+                  <span class="rsc-email">admin@example.com</span>
+                  <button type="button" class="rsc-login-btn">دخول فوري ➔</button>
+                </div>
+              </div>
+
+              <!-- بطاقة 2: أمين المال -->
+              <div class="role-select-card card-treasurer" onclick="quickDemoLogin('Treasurer')">
+                <div class="rsc-top">
+                  <div class="rsc-icon">💰</div>
+                  <div class="rsc-info">
+                    <strong class="rsc-name">أمين المال (Treasurer)</strong>
+                    <span class="rsc-tag tag-treasurer">المالية والتحصيل</span>
+                  </div>
+                </div>
+                <p class="rsc-desc">استخلاص الفواتير، تتبع الديون، طباعة التوصيلات، ومراقبة المداخيل.</p>
+                <div class="rsc-action">
+                  <span class="rsc-email">treasurer@example.com</span>
+                  <button type="button" class="rsc-login-btn">دخول فوري ➔</button>
+                </div>
+              </div>
+
+              <!-- بطاقة 3: مسؤول النقل المدرسي -->
+              <div class="role-select-card card-transport" onclick="quickDemoLogin('Transport Manager')">
+                <div class="rsc-top">
+                  <div class="rsc-icon">🚌</div>
+                  <div class="rsc-info">
+                    <strong class="rsc-name">مسؤول النقل المدرسي</strong>
+                    <span class="rsc-tag tag-transport">الأسطول والمسارات</span>
+                  </div>
+                </div>
+                <p class="rsc-desc">تدبير حافلات النقل المدرسي، جدولة المسارات، ومتابعة اشتراكات التلاميذ.</p>
+                <div class="rsc-action">
+                  <span class="rsc-email">transport@example.com</span>
+                  <button type="button" class="rsc-login-btn">دخول فوري ➔</button>
+                </div>
+              </div>
+
+              <!-- بطاقة 4: قارئ العدادات -->
+              <div class="role-select-card card-reader" onclick="quickDemoLogin('Meter Reader')">
+                <div class="rsc-top">
+                  <div class="rsc-icon">📊</div>
+                  <div class="rsc-info">
+                    <strong class="rsc-name">قارئ العدادات (Reader)</strong>
+                    <span class="rsc-tag tag-reader">الجولات الميدانية</span>
+                  </div>
+                </div>
+                <p class="rsc-desc">تسجيل قراءات المشتركين الدورية، وكشف التسربات والأعطاب الميدانية.</p>
+                <div class="rsc-action">
+                  <span class="rsc-email">reader@example.com</span>
+                  <button type="button" class="rsc-login-btn">دخول فوري ➔</button>
+                </div>
+              </div>
+
+              <!-- بطاقة 5: المحاسب -->
+              <div class="role-select-card card-accountant" onclick="quickDemoLogin('Accountant')">
+                <div class="rsc-top">
+                  <div class="rsc-icon">💼</div>
+                  <div class="rsc-info">
+                    <strong class="rsc-name">المحاسب (Accountant)</strong>
+                    <span class="rsc-tag tag-accountant">المحاسبة والأجور</span>
+                  </div>
+                </div>
+                <p class="rsc-desc">تقييد المصاريف والمداخيل، صرف رواتب المستخدمين، والبيانات الختامية.</p>
+                <div class="rsc-action">
+                  <span class="rsc-email">accountant@example.com</span>
+                  <button type="button" class="rsc-login-btn">دخول فوري ➔</button>
+                </div>
+              </div>
+
+              <!-- بطاقة 6: رئيس الجمعية -->
+              <div class="role-select-card card-president" onclick="quickDemoLogin('President')">
+                <div class="rsc-top">
+                  <div class="rsc-icon">🏛️</div>
+                  <div class="rsc-info">
+                    <strong class="rsc-name">رئيس الجمعية (President)</strong>
+                    <span class="rsc-tag tag-president">القيادة والمتابعة</span>
+                  </div>
+                </div>
+                <p class="rsc-desc">متابعة مؤشرات الأداء العامة، الجموع العامة، والمراسلات والوثائق.</p>
+                <div class="rsc-action">
+                  <span class="rsc-email">president@example.com</span>
+                  <button type="button" class="rsc-login-btn">دخول فوري ➔</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Manual Credentials Form (اليسار في RTL) -->
+          <div class="login-form-pane">
+            <div class="pane-headline">
+              <div class="pane-title-group">
+                <span class="pane-badge-icon">🔐</span>
+                <div>
+                  <h2 class="pane-title">تسجيل الدخول اليدوي</h2>
+                  <p class="pane-subtitle">أو أدخل بيانات حسابك المسجل:</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="login-error" class="login-error" style="display:none"></div>
+
+            <form id="login-form" class="login-form-modern" autocomplete="off">
+              <div class="login-input-group">
+                <label for="li-email">البريد الإلكتروني</label>
+                <div class="input-with-icon">
+                  <span class="input-icon">✉️</span>
+                  <input id="li-email" type="email" name="email" required placeholder="admin@example.com" value="admin@example.com" />
+                </div>
+              </div>
+
+              <div class="login-input-group">
+                <label for="li-pass">كلمة المرور</label>
+                <div class="input-with-icon">
+                  <span class="input-icon">🔒</span>
+                  <input id="li-pass" type="password" name="password" required placeholder="••••••••" value="admin123" />
+                </div>
+              </div>
+
+              <button type="submit" class="submit-login-btn" id="login-submit">
+                <span>🔐 تسجيل الدخول</span>
+                <span class="btn-arrow">➔</span>
+              </button>
+            </form>
+
+            <div class="login-security-box">
+              <div class="sec-badge">🛡️ أمان المؤسسات</div>
+              <p>نظام مؤمّن بتشفير <strong>scrypt</strong> وتوكنات <strong>HMAC</strong> الموقعة، مع نظام صلاحيات <strong>RBAC</strong> متكامل ومطابق لمعايير الحماية.</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -116,26 +247,5 @@
     <!-- Scripts -->
     <script src="./demo-engine.js"></script>
     <script src="./app.js"></script>
-    <script>
-      // Make hints table rows click-to-login
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('#hints-table tr').forEach(row => {
-          row.addEventListener('click', () => {
-            const email = row.getAttribute('data-email');
-            const pass = row.getAttribute('data-pass');
-            if (email && pass) {
-              const emailInput = document.getElementById('li-email');
-              const passInput = document.getElementById('li-pass');
-              const form = document.getElementById('login-form');
-              if (emailInput && passInput && form) {
-                emailInput.value = email;
-                passInput.value = pass;
-                form.dispatchEvent(new Event('submit', { cancelable: true }));
-              }
-            }
-          });
-        });
-      });
-    </script>
   </body>
 </html>
