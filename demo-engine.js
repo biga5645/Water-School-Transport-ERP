@@ -271,9 +271,69 @@
       });
     }
 
+  function enrich(store) {
+    const sectorById = new Map((store.sectors || []).map(item => [item.id, item]));
+    const customerById = new Map((store.customers || []).map(item => [item.id, item]));
+    const meterById = new Map((store.meters || []).map(item => [item.id, item]));
+    return {
+      customers: (store.customers || []).map(customer => ({
+        ...customer,
+        sectorName: sectorById.get(customer.sectorId)?.name || ""
+      })),
+      meters: (store.meters || []).map(meter => ({
+        ...meter,
+        customerName: customerById.get(meter.customerId)?.fullName || ""
+      })),
+      invoices: (store.invoices || []).map(invoice => ({
+        ...invoice,
+        customerName: customerById.get(invoice.customerId)?.fullName || "",
+        meterNumber: meterById.get(invoice.meterId)?.meterNumber || "",
+        sectorName: sectorById.get(customerById.get(invoice.customerId)?.sectorId)?.name || ""
+      })),
+      debts: (store.debts || []).map(debt => ({
+        ...debt,
+        customerName: customerById.get(debt.customerId)?.fullName || "",
+        phone: customerById.get(debt.customerId)?.phone || ""
+      }))
+    };
+  }
+
+  function computeDashboard(store) {
+    const totalDebt = (store.invoices || []).reduce((sum, invoice) => sum + Math.max(0, (invoice.totalAmount || 0) - (invoice.paidAmount || 0)), 0);
+    const paidInvoices = (store.invoices || []).filter(invoice => invoice.status === "paid").length;
+    const unpaidInvoices = (store.invoices || []).filter(invoice => invoice.status !== "paid").length;
+    const monthConsumption = (store.meterReadings || []).reduce((sum, reading) => sum + (reading.consumption || 0), 0);
+    const revenue = (store.revenues || []).reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
+    const expenses = (store.expenses || []).reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
+    const invoiceCount = (store.invoices || []).length || 1;
+    return {
+      customers: (store.customers || []).length,
+      activeCustomers: (store.customers || []).filter(item => item.status === "active").length,
+      meters: (store.meters || []).length,
+      sectors: (store.sectors || []).length,
+      monthConsumption,
+      paidInvoices,
+      unpaidInvoices,
+      totalDebt: Number(totalDebt.toFixed(2)),
+      students: (store.students || []).length,
+      buses: (store.buses || []).length,
+      revenue: Number(revenue.toFixed(2)),
+      expenses: Number(expenses.toFixed(2)),
+      netBalance: Number((revenue - expenses).toFixed(2)),
+      collectionRate: Math.round((paidInvoices / invoiceCount) * 100),
+      openRepairs: (store.repairs || []).filter(item => item.status !== "resolved").length,
+      pendingNotifications: (store.notifications || []).filter(item => item.status === "pending").length
+    };
+  }
+
     // 2. Bootstrap
     if (cleanUrl.endsWith("/api/v1/bootstrap")) {
-      return jsonResponse(store);
+      const enriched = enrich(store);
+      return jsonResponse({
+        ...store,
+        ...enriched,
+        dashboard: computeDashboard(store)
+      });
     }
 
     // 3. Payment collection

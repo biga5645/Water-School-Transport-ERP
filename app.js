@@ -456,7 +456,7 @@ function switchView(view) {
 
 function renderDashboard() {
   const role = state.session?.role || '';
-  const d        = state.data.dashboard;
+  const d        = state.data?.dashboard || {};
   const invoices = state.data.invoices  ||[];
   const debts    = state.data.debts     ||[];
   const repairs  = state.data.repairs   ||[];
@@ -3178,7 +3178,7 @@ function renderHr() {
 
 function renderAccounting() {
   const revenues=state.data.revenues||[]; const expenses=state.data.expenses||[];
-  const d=state.data.dashboard;
+  const d=state.data?.dashboard || {};
   const totalSal=(state.data.employees||[]).reduce((s,e)=>s+(e.salary||0),0);
   byId("view-accounting").innerHTML=`
     <div class="kpi-band" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px">
