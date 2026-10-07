@@ -224,8 +224,8 @@ Visit the interactive preview hosted on GitHub Pages:
 
 ### 📬 للتواصل ومناقشة المشاريع:
 - **GitHub**: [@biga5645](https://github.com/biga5645)
-- **Email**: `biga.dev.pro@gmail.com` *(أو عبر رسائل GitHub)*
-- **WhatsApp**: متوفر عند الطلب لمناقشة تفاصيل المشاريع وتحديد المتطلبات.
+- **Email**: `biga.خىثث@gmail.com` *(أو عبر رسائل GitHub)*
+- **WhatsApp**: +212662564570.
 
 ---
 
