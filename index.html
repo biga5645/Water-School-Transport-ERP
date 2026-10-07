@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="نظام ERP متكامل لإدارة جمعيات الماء الصالح للشرب والنقل المدرسي في العالم القروي — فوترة آلية، تتبع المشتركين والأسطول، محاسبة وصلاحيات RBAC." />
+    <meta name="theme-color" content="#0f766e" />
+    <meta property="og:title" content="Association ERP — نظام إدارة جمعيات الماء والنقل المدرسي" />
+    <meta property="og:description" content="حل برمجي متكامل لإدارة المشتركين، قراءات العدادات، الفوترة الآلية، أسطول النقل المدرسي والمحاسبة." />
+    <meta property="og:image" content="./docs/assets/banner.png" />
+    <title>Association ERP — نظام إدارة جمعيات الماء والنقل المدرسي</title>
+    <!-- Google Font Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+
+    <!-- ===== شاشة الدخول ===== -->
+    <div id="login-screen" class="login-screen">
+      <div class="login-card">
+        <div class="login-logo">💧</div>
+        <h1 class="login-title">جمعية الماء والنقل المدرسي</h1>
+        <p class="login-sub">Association ERP — تسجيل الدخول</p>
+
+        <!-- Quick 1-Click Demo Showcase -->
+        <div class="demo-quick-bar">
+          <div class="demo-quick-title">⚡ تجربة حية بنقرة واحدة (1-Click Demo Showcase):</div>
+          <div class="demo-chips">
+            <button type="button" class="demo-chip" onclick="quickDemoLogin('Super Admin')">👑 مدير عام (Admin)</button>
+            <button type="button" class="demo-chip" onclick="quickDemoLogin('Treasurer')">💰 أمين المال (Treasurer)</button>
+            <button type="button" class="demo-chip" onclick="quickDemoLogin('Transport Manager')">🚌 مسؤول النقل (Transport)</button>
+            <button type="button" class="demo-chip" onclick="quickDemoLogin('Meter Reader')">📊 قارئ العدادات (Reader)</button>
+            <button type="button" class="demo-chip" onclick="quickDemoLogin('Accountant')">💼 المحاسب (Accountant)</button>
+          </div>
+        </div>
+
+        <div id="login-error" class="login-error" style="display:none"></div>
+        <form id="login-form" class="login-form" autocomplete="off">
+          <div class="login-field">
+            <label>البريد الإلكتروني</label>
+            <input id="li-email" type="email" name="email" required placeholder="admin@example.com" />
+          </div>
+          <div class="login-field">
+            <label>كلمة المرور</label>
+            <input id="li-pass" type="password" name="password" required placeholder="••••••••" />
+          </div>
+          <button type="submit" class="login-btn" id="login-submit">🔐 دخول</button>
+        </form>
+
+        <div class="login-hints">
+          <p>حسابات التجربة (انقر على أي سطر للتسجيل الفوري):</p>
+          <table class="hints-table" id="hints-table">
+            <tr data-email="admin@example.com" data-pass="admin123"><td>Super Admin</td><td>admin@example.com</td><td>admin123</td></tr>
+            <tr data-email="reader@example.com" data-pass="reader123"><td>قارئ العدادات</td><td>reader@example.com</td><td>reader123</td></tr>
+            <tr data-email="treasurer@example.com" data-pass="treas123"><td>أمين المال</td><td>treasurer@example.com</td><td>treas123</td></tr>
+            <tr data-email="transport@example.com" data-pass="trans123"><td>مسؤول النقل</td><td>transport@example.com</td><td>trans123</td></tr>
+            <tr data-email="accountant@example.com" data-pass="accnt123"><td>المحاسب</td><td>accountant@example.com</td><td>accnt123</td></tr>
+            <tr data-email="president@example.com" data-pass="pres123"><td>الرئيس</td><td>president@example.com</td><td>pres123</td></tr>
+            <tr data-email="secretary@example.com" data-pass="secr123"><td>أمين السر</td><td>secretary@example.com</td><td>secr123</td></tr>
+            <tr data-email="billing@example.com" data-pass="bill123"><td>وكيل الفوترة</td><td>billing@example.com</td><td>bill123</td></tr>
+            <tr data-email="maintenance@example.com" data-pass="maint123"><td>عون الصيانة</td><td>maintenance@example.com</td><td>maint123</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== التطبيق الرئيسي ===== -->
+    <aside class="sidebar" id="main-sidebar" style="display:none">
+      <div class="brand">
+        <span class="brand-mark">WS</span>
+        <div>
+          <strong>جمعية الماء والنقل</strong>
+          <small>Association ERP</small>
+        </div>
+      </div>
+      <div class="sidebar-user" id="sidebar-user"></div>
+      <nav id="nav"></nav>
+      <button id="logout-btn" class="logout-btn">🚪 خروج</button>
+    </aside>
+
+    <main class="shell" id="main-shell" style="display:none">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Water &amp; School Transport Association Management System</p>
+          <h1 id="page-title">لوحة التحكم</h1>
+        </div>
+        <div class="top-actions">
+          <button id="refresh-btn" class="icon-button" title="تحديث البيانات">🔄</button>
+          <button id="export-csv-btn" class="primary-button" title="تصدير Excel / CSV">📥 CSV</button>
+          <button id="print-btn" class="primary-button" title="طباعة الصفحة الحالية">🖨️ طباعة</button>
+        </div>
+      </header>
+
+      <section id="view-dashboard" class="view active"></section>
+      <section id="view-customers" class="view"></section>
+      <section id="view-association" class="view"></section>
+      <section id="view-meters" class="view"></section>
+      <section id="view-tariffs" class="view"></section>
+      <section id="view-readings" class="view"></section>
+      <section id="view-invoices" class="view"></section>
+      <section id="view-debts" class="view"></section>
+      <section id="view-maintenance" class="view"></section>
+      <section id="view-transport" class="view"></section>
+      <section id="view-hr" class="view"></section>
+      <section id="view-accounting" class="view"></section>
+      <section id="view-reports" class="view"></section>
+      <section id="view-notifications" class="view"></section>
+      <section id="view-architecture" class="view"></section>
+      <section id="view-settings" class="view"></section>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="./demo-engine.js"></script>
+    <script src="./app.js"></script>
+    <script>
+      // Make hints table rows click-to-login
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('#hints-table tr').forEach(row => {
+          row.addEventListener('click', () => {
+            const email = row.getAttribute('data-email');
+            const pass = row.getAttribute('data-pass');
+            if (email && pass) {
+              const emailInput = document.getElementById('li-email');
+              const passInput = document.getElementById('li-pass');
+              const form = document.getElementById('login-form');
+              if (emailInput && passInput && form) {
+                emailInput.value = email;
+                passInput.value = pass;
+                form.dispatchEvent(new Event('submit', { cancelable: true }));
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "water-school-transport-association-management-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MVP web app and local API for Water & School Transport Association Management System.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.22.6"
+  }
+}
